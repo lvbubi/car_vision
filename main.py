@@ -16,12 +16,10 @@ def car_image_processor(image_uri):
     response = client.label_detection(image=image, max_results=100)
     labels = response.label_annotations
 
-    print(labels)
-
     for label in labels:
         if label.description.lower() in TYPES:
             print(f'VISION API CAR BRAND FOUND: {label.description.lower()} WITH SCORE: {label.score}')
-            return [label.description.lower()]
+            return label.description.lower()
 
 
 def read_image_local(image_uri):
